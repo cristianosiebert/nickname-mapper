@@ -7,8 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristianosiebert/nickname-mapper"
+  },
+  "keywords": ["js", "css", "alias", "mapper"],
+  "author": "Cristiano R. Siebert",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.24.4",
