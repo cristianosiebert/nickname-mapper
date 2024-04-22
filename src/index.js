@@ -19,16 +19,23 @@ function prepareClassMappings(classMappings) {
             return [cls];
         }
     }
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('[class]').forEach(el => {
-            classList = [];
-            const classes = el.className.split(/\s+/);
-            let resolvedClasses = [];
-            classes.forEach(cls => {
-                resolvedClasses = resolvedClasses.concat(resolveClass(cls));
-            });
-            el.className = resolvedClasses.join(' ');
+    document.querySelectorAll('[class]').forEach(el => {
+        classList = [];
+        let classes = [];
+        if (el.className.baseVal) {
+            classes = el.className.baseVal.split(/\s+/);
+        } else {
+            classes = el.className.split(/\s+/);
+        }
+        let resolvedClasses = [];
+        classes.forEach(cls => {
+            resolvedClasses = resolvedClasses.concat(resolveClass(cls));
         });
+        if (el.className.baseVal) {
+            el.setAttribute('class', resolvedClasses.join(' '));
+        } else {
+            el.className = resolvedClasses.join(' ');
+        }
     });
 }
 
@@ -55,12 +62,21 @@ function executeClassMapping(classMappings) {
     }
     document.querySelectorAll('[class]').forEach(el => {
         classList = [];
-        const classes = el.className.split(/\s+/);
+        let classes = [];
+        if (el.className.baseVal) {
+            classes = el.className.baseVal.split(/\s+/);
+        } else {
+            classes = el.className.split(/\s+/);
+        }
         let resolvedClasses = [];
         classes.forEach(cls => {
             resolvedClasses = resolvedClasses.concat(resolveClass(cls));
         });
-        el.className = resolvedClasses.join(' ');
+        if (el.className.baseVal) {
+            el.setAttribute('class', resolvedClasses.join(' '));
+        } else {
+            el.className = resolvedClasses.join(' ');
+        }
     });
 }
 
